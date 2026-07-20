@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cws3boy628ymr"]
+
+[ext_resource type="PackedScene" uid="uid://ketcxkqs6vk" path="res://scenes/enemies/blood_mage_static_v01.glb" id="1_umvua"]
+
+[node name="BloodMageStaticTest" type="Node3D"]
+
+[node name="BloodMageModel" parent="." instance=ExtResource("1_umvua")]

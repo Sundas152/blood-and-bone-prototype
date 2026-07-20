@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://r412ub6rkslj"]
+
+[ext_resource type="PackedScene" uid="uid://bp4j6np86j8l8" path="res://scenes/rooms/first_room.tscn" id="1_first_room"]
+[ext_resource type="PackedScene" uid="uid://ch0mh4owj1set" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://cac1aof85qu20" path="res://scripts/camera/camera_follow_25d.gd" id="3_camera_follow"]
+[ext_resource type="Script" uid="uid://lir7fekub1pj" path="res://scripts/main/main_25d.gd" id="4_main"]
+
+[sub_resource type="Environment" id="env_main"]
+background_mode = 1
+background_color = Color(0.008, 0.006, 0.008, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.22, 0.13, 0.14, 1)
+ambient_light_energy = 0.62
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.12
+fog_enabled = true
+fog_light_color = Color(0.16, 0.025, 0.034, 1)
+fog_light_energy = 0.18
+fog_density = 0.045
+
+[node name="Main" type="Node3D" unique_id=324362546]
+script = ExtResource("4_main")
+player_path = NodePath("Player")
+spawn_path = NodePath("FirstRoom/PlayerSpawn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2009147120]
+environment = SubResource("env_main")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=1783194512]
+transform = Transform3D(0.866025, -0.321394, 0.383022, 0, 0.766044, 0.642788, -0.5, -0.55667, 0.663414, 0, 5, 0)
+light_color = Color(0.94, 0.64, 0.5, 1)
+light_energy = 0.92
+shadow_enabled = true
+
+[node name="FirstRoom" parent="." unique_id=1218153112 instance=ExtResource("1_first_room")]
+
+[node name="Player" parent="." unique_id=348598333 instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2.4)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=580248864]
+transform = Transform3D(1, 0, 0, 0, 0.739941, 0.672672, 0, -0.672672, 0.739941, 0, 9.2, 12)
+current = true
+fov = 45.0
+far = 80.0
+script = ExtResource("3_camera_follow")
+target_path = NodePath("../Player")
+look_at_height = 0.75

@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvc2au3mvlct2"]
+
+[ext_resource type="PackedScene" uid="uid://bp4j6np86j8l8" path="res://scenes/rooms/first_room.tscn" id="1_first_room"]
+[ext_resource type="PackedScene" uid="uid://ch0mh4owj1set" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="Script" uid="uid://cac1aof85qu20" path="res://scripts/camera/camera_follow_25d.gd" id="3_camera_follow"]
+[ext_resource type="Script" uid="uid://lir7fekub1pj" path="res://scripts/main/main_25d.gd" id="4_main"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1bvp3"]
+sky_top_color = Color(0.65, 0.65, 0.7, 1)
+sky_horizon_color = Color(0.8, 0.8, 0.82, 1)
+ground_bottom_color = Color(0.3, 0.3, 0.32, 1)
+ground_horizon_color = Color(0.7, 0.7, 0.72, 1)
+
+[sub_resource type="Sky" id="Sky_lquwl"]
+sky_material = SubResource("ProceduralSkyMaterial_1bvp3")
+
+[sub_resource type="Environment" id="Environment_7mycd"]
+background_mode = 1
+background_color = Color(0.0156863, 0.0117647, 0.0156863, 1)
+sky = SubResource("Sky_lquwl")
+ambient_light_source = 3
+ambient_light_color = Color(0.0901961, 0.054902, 0.0666667, 1)
+ambient_light_energy = 0.34
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.08
+fog_enabled = true
+fog_light_color = Color(0.180392, 0.0352941, 0.0470588, 1)
+fog_light_energy = 0.34
+fog_density = 0.045
+fog_sky_affect = 0.65
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+
+[node name="Main" type="Node3D"]
+script = ExtResource("4_main")
+player_path = NodePath("Player")
+spawn_path = NodePath("FirstRoom/PlayerSpawn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7mycd")
+
+[node name="FirstRoom" parent="." instance=ExtResource("1_first_room")]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2.4)
+camera_path = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.390731, 0.920505, 0, -0.920505, 0.390731, 0.85, 1.25, 5.6)
+h_offset = 0.28
+v_offset = -0.18
+current = true
+fov = 68.0
+far = 80.0
+script = ExtResource("3_camera_follow")
+target_path = NodePath("../Player")
+follow_speed = 4.0
+camera_height = 1.18
+camera_distance = 3.45
+side_offset = 0.72
+look_at_height = 1.72
+bob_amount = 0.028
+bob_speed = 5.6
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, 0.439385, -0.368688, 0, 0.642788, 0.766044, 0.573576, -0.627507, 0.526541, 0, 0, 0)
+light_color = Color(0.721569, 0.219608, 0.188235, 1)
+light_energy = 0.62
+shadow_enabled = true

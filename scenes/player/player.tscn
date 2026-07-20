@@ -1,0 +1,732 @@
+[gd_scene load_steps=56 format=3 uid="uid://ch0mh4owj1set"]
+
+[ext_resource type="Script" uid="uid://b42yiiusk2foi" path="res://scripts/player/player_controller_25d.gd" id="1_player_controller"]
+
+[sub_resource type="StandardMaterial3D" id="mat_hoodie"]
+albedo_color = Color(0.012, 0.012, 0.014, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="mesh_torso"]
+material = SubResource("mat_hoodie")
+size = Vector3(0.68, 0.86, 0.38)
+
+[sub_resource type="StandardMaterial3D" id="mat_pants"]
+albedo_color = Color(0.018, 0.019, 0.024, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="mesh_chest_detail"]
+material = SubResource("mat_pants")
+size = Vector3(0.42, 0.09, 0.045)
+
+[sub_resource type="SphereMesh" id="mesh_hood"]
+material = SubResource("mat_hoodie")
+radius = 0.33
+height = 0.58
+
+[sub_resource type="StandardMaterial3D" id="mat_face"]
+albedo_color = Color(0.58, 0.45, 0.34, 1)
+roughness = 0.72
+
+[sub_resource type="BoxMesh" id="mesh_face"]
+material = SubResource("mat_face")
+size = Vector3(0.28, 0.24, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dovo2"]
+shading_mode = 0
+albedo_color = Color(0.006, 0.006, 0.008, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmlin"]
+size = Vector3(0.42, 0.08, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvxji"]
+shading_mode = 0
+albedo_color = Color(0.012, 0.012, 0.014, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p47bc"]
+size = Vector3(0.28, 0.16, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75vfm"]
+shading_mode = 0
+albedo_color = Color(0.012, 0.012, 0.014, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0owmy"]
+size = Vector3(0.28, 0.16, 0.42)
+
+[sub_resource type="CapsuleMesh" id="mesh_arm"]
+material = SubResource("mat_hoodie")
+radius = 0.085
+height = 0.72
+
+[sub_resource type="StandardMaterial3D" id="mat_grip_marker"]
+shading_mode = 0
+albedo_color = Color(0.09, 0.006, 0.014, 1)
+
+[sub_resource type="SphereMesh" id="mesh_grip_marker"]
+material = SubResource("mat_grip_marker")
+radius = 0.075
+height = 0.1
+radial_segments = 6
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8afob"]
+albedo_color = Color(0.160784, 0.00784314, 0.027451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dovo2"]
+size = Vector3(0.34, 0.2, 2.65)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+albedo_color = Color(0.619608, 0.0196078, 0.0392157, 1)
+emission_enabled = true
+emission = Color(0.447059, 0.0156863, 0.0313726, 1)
+emission_energy_multiplier = 0.55
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvxji"]
+size = Vector3(0.12, 0.24, 2.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p47bc"]
+albedo_color = Color(0.619608, 0.0196078, 0.0392157, 1)
+emission_enabled = true
+emission = Color(0.447059, 0.0156863, 0.0313726, 1)
+emission_energy_multiplier = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_75vfm"]
+radius = 0.035
+height = 1.4
+radial_segments = 6
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
+albedo_color = Color(0.619608, 0.0196078, 0.0392157, 1)
+emission_enabled = true
+emission = Color(0.447059, 0.0156863, 0.0313726, 1)
+emission_energy_multiplier = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qek5x"]
+radius = 0.035
+height = 1.4
+radial_segments = 6
+rings = 3
+
+[sub_resource type="BoxMesh" id="mesh_veinmore_handle"]
+material = SubResource("mat_grip_marker")
+size = Vector3(0.18, 0.12, 0.78)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h17s1"]
+transparency = 1
+albedo_color = Color(1, 0.0156863, 0.0470588, 0.62)
+emission_enabled = true
+emission = Color(1, 0.0352941, 0.0784314, 1)
+emission_energy_multiplier = 1.65
+
+[sub_resource type="BoxMesh" id="BoxMesh_je7p5"]
+size = Vector3(2.65, 0.035, 1.55)
+
+[sub_resource type="CapsuleMesh" id="mesh_leg"]
+material = SubResource("mat_pants")
+radius = 0.11
+height = 0.78
+
+[sub_resource type="StandardMaterial3D" id="mat_shoe"]
+albedo_color = Color(0.006, 0.006, 0.007, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="mesh_shoe"]
+material = SubResource("mat_shoe")
+size = Vector3(0.22, 0.12, 0.34)
+
+[sub_resource type="CapsuleMesh" id="mesh_drawstring"]
+material = SubResource("mat_face")
+radius = 0.012
+height = 0.34
+
+[sub_resource type="StandardMaterial3D" id="mat_old_leather"]
+albedo_color = Color(0.12, 0.074, 0.052, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_rusted_metal"]
+albedo_color = Color(0.18, 0.14, 0.105, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_dull_bone"]
+albedo_color = Color(0.62, 0.55, 0.42, 1)
+roughness = 0.78
+
+[sub_resource type="StandardMaterial3D" id="mat_clotted_cloth"]
+albedo_color = Color(0.24, 0.018, 0.026, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_hair"]
+albedo_color = Color(0.026, 0.022, 0.019, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_eye_shadow"]
+shading_mode = 0
+albedo_color = Color(0.018, 0.012, 0.012, 1)
+
+[sub_resource type="BoxMesh" id="mesh_strap"]
+material = SubResource("mat_old_leather")
+size = Vector3(0.08, 0.06, 0.82)
+
+[sub_resource type="BoxMesh" id="mesh_wide_strap"]
+material = SubResource("mat_old_leather")
+size = Vector3(0.13, 0.07, 0.92)
+
+[sub_resource type="BoxMesh" id="mesh_belt"]
+material = SubResource("mat_old_leather")
+size = Vector3(0.82, 0.12, 0.09)
+
+[sub_resource type="BoxMesh" id="mesh_buckle"]
+material = SubResource("mat_rusted_metal")
+size = Vector3(0.18, 0.14, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh_cloth_strip"]
+material = SubResource("mat_clotted_cloth")
+size = Vector3(0.18, 0.72, 0.055)
+
+[sub_resource type="BoxMesh" id="mesh_long_cloak_strip"]
+material = SubResource("mat_hoodie")
+size = Vector3(0.2, 1.12, 0.06)
+
+[sub_resource type="CapsuleMesh" id="mesh_bone_spike"]
+material = SubResource("mat_dull_bone")
+radius = 0.035
+height = 0.54
+radial_segments = 5
+rings = 2
+
+[sub_resource type="CapsuleMesh" id="mesh_small_bone"]
+material = SubResource("mat_dull_bone")
+radius = 0.026
+height = 0.38
+radial_segments = 5
+rings = 2
+
+[sub_resource type="CapsuleMesh" id="mesh_hair_lock"]
+material = SubResource("mat_hair")
+radius = 0.022
+height = 0.42
+radial_segments = 5
+rings = 2
+
+[sub_resource type="BoxMesh" id="mesh_blade_chunk"]
+material = SubResource("StandardMaterial3D_8afob")
+size = Vector3(0.22, 0.08, 0.62)
+
+[sub_resource type="BoxMesh" id="mesh_blade_tip"]
+material = SubResource("mat_dull_bone")
+size = Vector3(0.12, 0.055, 0.42)
+
+[sub_resource type="BoxMesh" id="mesh_blade_hook"]
+material = SubResource("StandardMaterial3D_gmlin")
+size = Vector3(0.13, 0.08, 0.52)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5gtgg"]
+radius = 0.035
+height = 1.4
+radial_segments = 6
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.38)
+
+[sub_resource type="SphereMesh" id="mesh_shadow"]
+material = SubResource("mat_shadow")
+radius = 0.45
+height = 0.08
+
+[sub_resource type="CapsuleShape3D" id="shape_player"]
+radius = 0.35
+height = 1.62
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fm80t"]
+size = Vector3(2.2, 1.25, 2.05)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_player_controller")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="VisualRoot" type="Node3D" parent="Model"]
+
+[node name="HipsPivot" type="Node3D" parent="Model/VisualRoot"]
+
+[node name="HipsVisual" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.78, 0, 0, 0, 0.36, 0, 0, 0, 0.72, 0, 0.72, 0.02)
+mesh = SubResource("mesh_torso")
+
+[node name="BeltWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86, -0.235)
+mesh = SubResource("mesh_belt")
+
+[node name="BeltBuckle" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86, -0.29)
+mesh = SubResource("mesh_buckle")
+
+[node name="FrontBloodTabardCenter" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.9, 0.13, 0, -0.13, 0.9, 0, 0, 0, 1, 0, 0.42, -0.31)
+mesh = SubResource("mesh_cloth_strip")
+
+[node name="FrontBloodTabardLeft" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.74, -0.18, 0, 0.18, 0.74, 0, 0, 0, 1, -0.19, 0.39, -0.285)
+mesh = SubResource("mesh_cloth_strip")
+
+[node name="FrontBloodTabardRight" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.78, 0.16, 0, -0.16, 0.78, 0, 0, 0, 1, 0.2, 0.37, -0.285)
+mesh = SubResource("mesh_cloth_strip")
+
+[node name="BackCloakCenter" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0.08, 0, -0.08, 1, 0, 0, 0, 1, 0, 0.43, 0.28)
+mesh = SubResource("mesh_long_cloak_strip")
+
+[node name="BackCloakLeft" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.82, -0.2, 0, 0.2, 0.82, 0, 0, 0, 1, -0.24, 0.38, 0.25)
+mesh = SubResource("mesh_long_cloak_strip")
+
+[node name="BackCloakRight" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(0.86, 0.18, 0, -0.18, 0.86, 0, 0, 0, 1, 0.25, 0.36, 0.25)
+mesh = SubResource("mesh_long_cloak_strip")
+
+[node name="TorsoPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0)
+
+[node name="TorsoBlock" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(1.04, 0, 0, 0, 1, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_torso")
+
+[node name="ChestBlock" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(1.16, 0, 0, 0, 1.15, 0, 0, 0, 1, 0, 0.18, -0.215)
+mesh = SubResource("mesh_chest_detail")
+
+[node name="ChestStrapLeft" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(0.78, -0.63, 0, 0.63, 0.78, 0, 0, 0, 1, -0.13, 0.08, -0.27)
+mesh = SubResource("mesh_wide_strap")
+
+[node name="ChestStrapRight" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(0.78, 0.63, 0, -0.63, 0.78, 0, 0, 0, 1, 0.13, 0.08, -0.275)
+mesh = SubResource("mesh_strap")
+
+[node name="ThroatWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(1.16, 0, 0, 0, 0.55, 0, 0, 0, 0.78, 0, 0.47, -0.075)
+material_override = SubResource("mat_old_leather")
+mesh = SubResource("BoxMesh_gmlin")
+
+[node name="HeadPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -0.02)
+
+[node name="Head" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot"]
+transform = Transform3D(1.08, 0, 0, 0, 1.05, 0, 0, 0, 0.92, 0, 0, 0)
+mesh = SubResource("mesh_hood")
+
+[node name="FaceOpening" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(1, 0, 0, 0, 0.85, 0, 0, 0, 1, 0, -0.02, -0.31)
+mesh = SubResource("mesh_face")
+
+[node name="HoodRim" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(1, 0, 0, 0, 0.85, 0, 0, 0, 1, 0, 0.08, -0.33)
+material_override = SubResource("StandardMaterial3D_dovo2")
+mesh = SubResource("BoxMesh_gmlin")
+
+[node name="EyeShadow" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(0.86, 0, 0, 0, 0.42, 0, 0, 0, 1, 0, 0.035, -0.345)
+material_override = SubResource("mat_eye_shadow")
+mesh = SubResource("BoxMesh_gmlin")
+
+[node name="HairLockCenter" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(0.95, 0.18, 0, -0.18, 0.95, 0, 0, 0, 0.95, 0.0, -0.08, -0.31)
+mesh = SubResource("mesh_hair_lock")
+
+[node name="HairLockLeft" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(0.82, -0.31, 0, 0.31, 0.82, 0, 0, 0, 0.82, -0.16, -0.02, -0.285)
+mesh = SubResource("mesh_hair_lock")
+
+[node name="HairLockRight" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/HeadPivot/Head"]
+transform = Transform3D(0.82, 0.31, 0, -0.31, 0.82, 0, 0, 0, 0.82, 0.16, -0.02, -0.285)
+mesh = SubResource("mesh_hair_lock")
+
+[node name="ShoulderPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.08)
+
+[node name="LeftShoulderBlock" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 0, 0, 1, -0.36, 0.03, 0.06)
+material_override = SubResource("StandardMaterial3D_lvxji")
+mesh = SubResource("BoxMesh_p47bc")
+
+[node name="RightShoulderBlock" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.981627, -0.190809, 0, 0.190809, 0.981627, 0, 0, 0, 1, 0.36, 0.03, 0.06)
+material_override = SubResource("StandardMaterial3D_75vfm")
+mesh = SubResource("BoxMesh_0owmy")
+
+[node name="RightBonePauldronBase" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(1.05, -0.24, 0, 0.24, 1.05, 0, 0, 0, 0.9, 0.48, 0.07, -0.06)
+material_override = SubResource("mat_dull_bone")
+mesh = SubResource("BoxMesh_0owmy")
+
+[node name="RightBoneSpikeHigh" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.18, -0.88, 0.44, 0.72, 0.4, 0.56, -0.66, 0.21, 0.72, 0.66, 0.18, -0.04)
+mesh = SubResource("mesh_bone_spike")
+
+[node name="RightBoneSpikeMid" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.22, -0.72, 0.46, 0.63, 0.45, 0.39, -0.56, 0.15, 0.68, 0.62, 0.08, -0.13)
+mesh = SubResource("mesh_bone_spike")
+
+[node name="RightBoneSpikeLow" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.26, -0.58, 0.38, 0.5, 0.44, 0.26, -0.42, 0.12, 0.56, 0.55, -0.02, -0.19)
+mesh = SubResource("mesh_small_bone")
+
+[node name="LeftBonePlate" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.9, 0.18, 0, -0.18, 0.9, 0, 0, 0, 0.76, -0.45, 0.035, -0.035)
+material_override = SubResource("mat_rusted_metal")
+mesh = SubResource("BoxMesh_p47bc")
+
+[node name="RightArmPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0.42, -0.02, -0.02)
+
+[node name="RightUpperArm" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/RightArmPivot"]
+transform = Transform3D(0.82, 0, 0, 0, 0.68, 0, 0, 0, 0.82, 0, -0.22, 0)
+mesh = SubResource("mesh_arm")
+
+[node name="RightArmWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/RightArmPivot"]
+transform = Transform3D(0.74, -0.18, 0, 0.18, 0.74, 0, 0, 0, 0.74, 0, -0.32, -0.02)
+mesh = SubResource("mesh_strap")
+
+[node name="RightForearmPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/RightArmPivot"]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 0, -0.47, -0.08)
+
+[node name="RightForearm" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/RightArmPivot/RightForearmPivot"]
+transform = Transform3D(0.72, 0, 0, 0, 0.58, 0, 0, 0, 0.72, 0, -0.2, 0)
+mesh = SubResource("mesh_arm")
+
+[node name="RightGripPoint" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/RightArmPivot/RightForearmPivot"]
+transform = Transform3D(1.55, 0, 0, 0, 1.55, 0, 0, 0, 1.55, 0.02, -0.43, -0.05)
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftArmPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -0.42, -0.02, -0.02)
+
+[node name="LeftUpperArm" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/LeftArmPivot"]
+transform = Transform3D(0.82, 0, 0, 0, 0.68, 0, 0, 0, 0.82, 0, -0.22, 0)
+mesh = SubResource("mesh_arm")
+
+[node name="LeftArmWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/LeftArmPivot"]
+transform = Transform3D(0.74, 0.18, 0, -0.18, 0.74, 0, 0, 0, 0.74, 0, -0.32, -0.02)
+mesh = SubResource("mesh_strap")
+
+[node name="LeftForearmPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/LeftArmPivot"]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, 0, -0.47, -0.08)
+
+[node name="LeftForearm" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/LeftArmPivot/LeftForearmPivot"]
+transform = Transform3D(0.72, 0, 0, 0, 0.58, 0, 0, 0, 0.72, 0, -0.2, 0)
+mesh = SubResource("mesh_arm")
+
+[node name="LeftGripPoint" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/LeftArmPivot/LeftForearmPivot"]
+transform = Transform3D(1.55, 0, 0, 0, 1.55, 0, 0, 0, 1.55, -0.02, -0.43, -0.05)
+mesh = SubResource("mesh_grip_marker")
+
+[node name="VeinmoreGripRoot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.3, -0.5)
+
+[node name="VeinmoreSwingPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot"]
+
+[node name="Veinmore" type="Node3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -0.34)
+visible = false
+
+[node name="BladeMass" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(0.74, 0.18, 0, -0.18, 0.74, 0, 0, 0, 1, 0.08, 0.02, -1.18)
+material_override = SubResource("StandardMaterial3D_8afob")
+mesh = SubResource("BoxMesh_dovo2")
+
+[node name="BloodCore" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -1.08)
+material_override = SubResource("StandardMaterial3D_gmlin")
+mesh = SubResource("BoxMesh_lvxji")
+
+[node name="BladeHookRoot" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(0.72, -0.42, 0, 0.42, 0.72, 0, 0, 0, 1, -0.16, 0.0, -0.56)
+mesh = SubResource("mesh_blade_chunk")
+
+[node name="BladeHookMid" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(0.66, -0.62, 0, 0.62, 0.66, 0, 0, 0, 1, -0.36, 0.02, -0.94)
+mesh = SubResource("mesh_blade_chunk")
+
+[node name="BladeHookTip" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(0.54, -0.82, 0, 0.82, 0.54, 0, 0, 0, 1, -0.58, 0.025, -1.28)
+mesh = SubResource("mesh_blade_tip")
+
+[node name="BladeBloodEdge" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(0.62, -0.64, 0, 0.64, 0.62, 0, 0, 0, 1, -0.25, 0.09, -0.98)
+mesh = SubResource("mesh_blade_hook")
+
+[node name="TendrilA" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0, -0.55)
+material_override = SubResource("StandardMaterial3D_p47bc")
+mesh = SubResource("CapsuleMesh_75vfm")
+
+[node name="TendrilB" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, -0.02, -0.42)
+material_override = SubResource("StandardMaterial3D_0owmy")
+mesh = SubResource("CapsuleMesh_qek5x")
+
+[node name="VeinmoreHandlePoint" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.94, 0.342, 0, -0.342, 0.94, -0.1, -0.035, -0.33)
+visible = false
+mesh = SubResource("mesh_veinmore_handle")
+
+[node name="VeinmoreTrail" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/TorsoPivot/ShoulderPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 0.1, -1.05)
+visible = false
+material_override = SubResource("StandardMaterial3D_h17s1")
+mesh = SubResource("BoxMesh_je7p5")
+
+[node name="LeftLegPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.48, 0)
+
+[node name="LeftLeg" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/LeftLegPivot"]
+transform = Transform3D(0.92, 0, 0, 0, 1, 0, 0, 0, 0.92, 0, -0.16, 0)
+mesh = SubResource("mesh_leg")
+
+[node name="LeftBootWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/LeftLegPivot"]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.72, 0, -0.31, -0.02)
+mesh = SubResource("mesh_strap")
+
+[node name="LeftFoot" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/LeftLegPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, -0.08)
+mesh = SubResource("mesh_shoe")
+
+[node name="RightLegPivot" type="Node3D" parent="Model/VisualRoot/HipsPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.48, 0)
+
+[node name="RightLeg" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/RightLegPivot"]
+transform = Transform3D(0.92, 0, 0, 0, 1, 0, 0, 0, 0.92, 0, -0.16, 0)
+mesh = SubResource("mesh_leg")
+
+[node name="RightBootWrap" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/RightLegPivot"]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.72, 0, -0.31, -0.02)
+mesh = SubResource("mesh_strap")
+
+[node name="RightFoot" type="MeshInstance3D" parent="Model/VisualRoot/HipsPivot/RightLegPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42, -0.08)
+mesh = SubResource("mesh_shoe")
+
+[node name="Torso" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0)
+visible = false
+mesh = SubResource("mesh_torso")
+
+[node name="Hood" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1.08, 0, 0, 0, 1.05, 0, 0, 0, 0.92, 0, 1.58, -0.02)
+visible = false
+mesh = SubResource("mesh_hood")
+
+[node name="FaceOpening" type="MeshInstance3D" parent="Model/Hood"]
+transform = Transform3D(1, 0, 0, 0, 0.85, 0, 0, 0, 1, 0, -0.02, -0.31)
+mesh = SubResource("mesh_face")
+
+[node name="HoodRim" type="MeshInstance3D" parent="Model/Hood"]
+transform = Transform3D(1, 0, 0, 0, 0.85, 0, 0, 0, 1, 0, 0.08, -0.33)
+material_override = SubResource("StandardMaterial3D_dovo2")
+mesh = SubResource("BoxMesh_gmlin")
+
+[node name="ChestShadow" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17, -0.215)
+visible = false
+mesh = SubResource("mesh_chest_detail")
+
+[node name="LeftDrawstring" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 0.72, 0.69, 0, -0.69, 0.72, -0.075, 1.34, -0.235)
+visible = false
+mesh = SubResource("mesh_drawstring")
+
+[node name="RightDrawstring" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 0.72, -0.69, 0, 0.69, 0.72, 0.075, 1.34, -0.235)
+visible = false
+mesh = SubResource("mesh_drawstring")
+
+[node name="LeftArm" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.78, 0.33, 0, -0.33, 0.78, 0, 0, 0, 1, -0.44, 0.92, -0.01)
+visible = false
+mesh = SubResource("mesh_arm")
+
+[node name="RightArm" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.78, -0.33, 0, 0.33, 0.78, 0, 0, 0, 1, 0.44, 0.92, -0.01)
+visible = false
+mesh = SubResource("mesh_arm")
+
+[node name="ArmTransitionVessels" type="Node3D" parent="Model"]
+
+[node name="LeftVesselA" type="MeshInstance3D" parent="Model/ArmTransitionVessels"]
+transform = Transform3D(0.58, 0.32, 0, -0.32, 0.58, 0, 0, 0, 0.58, -0.34, 1.02, -0.18)
+visible = false
+material_override = SubResource("StandardMaterial3D_p47bc")
+mesh = SubResource("CapsuleMesh_5gtgg")
+
+[node name="LeftVesselB" type="MeshInstance3D" parent="Model/ArmTransitionVessels"]
+transform = Transform3D(0.42, -0.24, 0, 0.24, 0.42, 0, 0, 0, 0.42, -0.24, 0.86, -0.34)
+visible = false
+material_override = SubResource("StandardMaterial3D_0owmy")
+mesh = SubResource("CapsuleMesh_5gtgg")
+
+[node name="RightVesselA" type="MeshInstance3D" parent="Model/ArmTransitionVessels"]
+transform = Transform3D(0.58, -0.32, 0, 0.32, 0.58, 0, 0, 0, 0.58, 0.34, 1.02, -0.18)
+visible = false
+material_override = SubResource("StandardMaterial3D_p47bc")
+mesh = SubResource("CapsuleMesh_5gtgg")
+
+[node name="RightVesselB" type="MeshInstance3D" parent="Model/ArmTransitionVessels"]
+transform = Transform3D(0.42, 0.24, 0, -0.24, 0.42, 0, 0, 0, 0.42, 0.24, 0.86, -0.34)
+visible = false
+material_override = SubResource("StandardMaterial3D_0owmy")
+mesh = SubResource("CapsuleMesh_5gtgg")
+
+[node name="LeftLeg" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17, 0.38, 0)
+visible = false
+mesh = SubResource("mesh_leg")
+
+[node name="RightLeg" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0.38, 0)
+visible = false
+mesh = SubResource("mesh_leg")
+
+[node name="LeftShoe" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17, 0.06, -0.06)
+visible = false
+mesh = SubResource("mesh_shoe")
+
+[node name="RightShoe" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17, 0.06, -0.06)
+visible = false
+mesh = SubResource("mesh_shoe")
+
+[node name="CombatRig" type="Node3D" parent="Model"]
+
+[node name="CombatTorsoPivot" type="Node3D" parent="Model/CombatRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, -0.16)
+
+[node name="RightCombatArm" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot"]
+transform = Transform3D(0.78, -0.44, 0, 0.44, 0.78, 0, 0, 0, 1, 0.34, -0.03, -0.16)
+visible = false
+mesh = SubResource("mesh_arm")
+
+[node name="LeftCombatArm" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot"]
+transform = Transform3D(0.78, 0.44, 0, -0.44, 0.78, 0, 0, 0, 1, -0.34, -0.03, -0.16)
+visible = false
+mesh = SubResource("mesh_arm")
+
+[node name="RightGripHand" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot"]
+transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, 0.1, -0.08, -0.44)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftGripHand" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot"]
+transform = Transform3D(1.65, 0, 0, 0, 1.65, 0, 0, 0, 1.65, -0.18, -0.08, -0.58)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="VeinmoreGripRoot" type="Node3D" parent="Model/CombatRig/CombatTorsoPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.08, -0.38)
+
+[node name="VeinmoreSwingPivot" type="Node3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot"]
+
+[node name="Veinmore" type="Node3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -0.34)
+visible = false
+
+[node name="BladeMass" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.02, -1.18)
+material_override = SubResource("StandardMaterial3D_8afob")
+mesh = SubResource("BoxMesh_dovo2")
+
+[node name="BloodCore" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -1.08)
+material_override = SubResource("StandardMaterial3D_gmlin")
+mesh = SubResource("BoxMesh_lvxji")
+
+[node name="TendrilA" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0, -0.55)
+material_override = SubResource("StandardMaterial3D_p47bc")
+mesh = SubResource("CapsuleMesh_75vfm")
+
+[node name="TendrilB" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot/Veinmore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, -0.02, -0.42)
+material_override = SubResource("StandardMaterial3D_0owmy")
+mesh = SubResource("CapsuleMesh_qek5x")
+
+[node name="VeinmoreHandlePoint" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.94, 0.342, 0, -0.342, 0.94, -0.1, -0.035, -0.33)
+visible = false
+mesh = SubResource("mesh_veinmore_handle")
+
+[node name="RightGripPoint" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1.45, 0, 0, 0, 1.45, 0, 0, 0, 1.45, 0.02, -0.045, -0.22)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftGripPoint" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1.45, 0, 0, 0, 1.45, 0, 0, 0, 1.45, -0.22, -0.045, -0.48)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="VeinmoreTrail" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 0.1, -1.05)
+visible = false
+material_override = SubResource("StandardMaterial3D_h17s1")
+mesh = SubResource("BoxMesh_je7p5")
+
+[node name="RightHandGripTarget" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1.35, 0, 0, 0, 1.35, 0, 0, 0, 1.35, 0.04, -0.05, -0.32)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftHandGripTarget" type="MeshInstance3D" parent="Model/CombatRig/CombatTorsoPivot/VeinmoreGripRoot/VeinmoreSwingPivot"]
+transform = Transform3D(1.35, 0, 0, 0, 1.35, 0, 0, 0, 1.35, -0.3, -0.04, -0.72)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="WeaponAttachment" type="Node3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 0.961262, 0.275637, 0, -0.275637, 0.961262, 0.48, 0.98, -0.24)
+
+[node name="ExtractionStrand" type="MeshInstance3D" parent="Model/WeaponAttachment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16, -0.06, -0.26)
+visible = false
+mesh = SubResource("CapsuleMesh_5gtgg")
+
+[node name="RightGripMarker" type="MeshInstance3D" parent="Model/WeaponAttachment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.03, -0.28)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftGripMarker" type="MeshInstance3D" parent="Model/WeaponAttachment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.025, -0.55)
+visible = false
+mesh = SubResource("mesh_grip_marker")
+
+[node name="LeftShoulder" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 0, 0, 1, -0.36, 1.23, -0.01)
+visible = false
+material_override = SubResource("StandardMaterial3D_lvxji")
+mesh = SubResource("BoxMesh_p47bc")
+
+[node name="RightShoulder" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.981627, -0.190809, 0, 0.190809, 0.981627, 0, 0, 0, 1, 0.36, 1.23, -0.01)
+visible = false
+material_override = SubResource("StandardMaterial3D_75vfm")
+mesh = SubResource("BoxMesh_0owmy")
+
+[node name="GroundShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 0.08, 0, 0, 0, 0.75, 0, 0.025, 0)
+mesh = SubResource("mesh_shadow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82, 0)
+shape = SubResource("shape_player")
+
+[node name="VeinmoreHitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.95, -1.25)
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VeinmoreHitbox"]
+shape = SubResource("BoxShape3D_fm80t")

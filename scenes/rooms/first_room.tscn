@@ -1,0 +1,629 @@
+[gd_scene load_steps=66 format=3 uid="uid://bp4j6np86j8l8"]
+
+[ext_resource type="PackedScene" uid="uid://bu1kpaya8efqf" path="res://scenes/enemies/test_enemy.tscn" id="1_enemy_test"]
+[ext_resource type="Script" uid="uid://cr1mcind57udi" path="res://scripts/rooms/first_room_bounds.gd" id="1_s4f8b"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/blood_mage_static_test.tscn" id="3_30ct7"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+shading_mode = 0
+albedo_color = Color(0.13, 0.012, 0.018, 1)
+
+[sub_resource type="BoxMesh" id="mesh_floor"]
+material = SubResource("mat_floor")
+size = Vector3(18, 0.22, 13)
+
+[sub_resource type="BoxShape3D" id="shape_floor"]
+size = Vector3(18, 0.22, 13)
+
+[sub_resource type="StandardMaterial3D" id="mat_walkable_path"]
+shading_mode = 0
+albedo_color = Color(0.18, 0.15, 0.13, 1)
+
+[sub_resource type="BoxMesh" id="mesh_walkable_path"]
+material = SubResource("mat_walkable_path")
+size = Vector3(3.8, 0.035, 10.4)
+
+[sub_resource type="StandardMaterial3D" id="mat_edge_shadow"]
+shading_mode = 0
+albedo_color = Color(0.035, 0.006, 0.012, 1)
+
+[sub_resource type="BoxMesh" id="mesh_edge_shadow"]
+material = SubResource("mat_edge_shadow")
+size = Vector3(2.15, 0.035, 11.6)
+
+[sub_resource type="StandardMaterial3D" id="mat_floor_ridge"]
+shading_mode = 0
+albedo_color = Color(0.27, 0.026, 0.035, 1)
+
+[sub_resource type="BoxMesh" id="mesh_floor_ridge"]
+material = SubResource("mat_floor_ridge")
+size = Vector3(0.18, 0.045, 3.8)
+
+[sub_resource type="StandardMaterial3D" id="mat_bone_plate"]
+shading_mode = 0
+albedo_color = Color(0.58, 0.52, 0.38, 1)
+
+[sub_resource type="BoxMesh" id="mesh_bone_plate_a"]
+material = SubResource("mat_bone_plate")
+size = Vector3(1.2, 0.045, 0.52)
+
+[sub_resource type="BoxMesh" id="mesh_bone_plate_b"]
+material = SubResource("mat_bone_plate")
+size = Vector3(0.78, 0.045, 0.38)
+
+[sub_resource type="StandardMaterial3D" id="mat_marrow_lump"]
+shading_mode = 0
+albedo_color = Color(0.31, 0.035, 0.048, 1)
+
+[sub_resource type="SphereMesh" id="mesh_marrow_lump"]
+material = SubResource("mat_marrow_lump")
+radius = 0.42
+height = 0.42
+radial_segments = 6
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="mat_vessel"]
+shading_mode = 0
+albedo_color = Color(0.34, 0.018, 0.032, 1)
+
+[sub_resource type="CylinderMesh" id="mesh_vessel_strand"]
+material = SubResource("mat_vessel")
+top_radius = 0.055
+bottom_radius = 0.055
+height = 1.0
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="mat_dark"]
+shading_mode = 0
+albedo_color = Color(0.022, 0.018, 0.02, 1)
+
+[sub_resource type="BoxMesh" id="mesh_wall_long"]
+material = SubResource("mat_dark")
+size = Vector3(18, 1.8, 0.65)
+
+[sub_resource type="BoxShape3D" id="shape_wall_long"]
+size = Vector3(18, 1.8, 0.65)
+
+[sub_resource type="BoxMesh" id="mesh_wall_short"]
+material = SubResource("mat_dark")
+size = Vector3(0.65, 1.8, 13)
+
+[sub_resource type="BoxShape3D" id="shape_wall_short"]
+size = Vector3(0.65, 1.8, 13)
+
+[sub_resource type="BoxMesh" id="mesh_wall_exit"]
+material = SubResource("mat_dark")
+size = Vector3(6, 1.8, 0.65)
+
+[sub_resource type="BoxShape3D" id="shape_wall_exit"]
+size = Vector3(6, 1.8, 0.65)
+
+[sub_resource type="StandardMaterial3D" id="mat_bone"]
+shading_mode = 0
+albedo_color = Color(0.68, 0.61, 0.43, 1)
+
+[sub_resource type="CapsuleMesh" id="mesh_rib"]
+material = SubResource("mat_bone")
+radius = 0.18
+height = 2.45
+radial_segments = 6
+rings = 3
+
+[sub_resource type="CapsuleMesh" id="mesh_wall_rib"]
+material = SubResource("mat_bone")
+radius = 0.13
+height = 3.15
+radial_segments = 6
+rings = 3
+
+[sub_resource type="CapsuleMesh" id="mesh_bone_spur"]
+material = SubResource("mat_bone")
+radius = 0.095
+height = 1.45
+radial_segments = 5
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6r751"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4f8b"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30ct7"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xvb8q"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86vrr"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6bw03"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbnyo"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hy16x"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7umc"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fxel0"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoeee"]
+shading_mode = 0
+albedo_color = Color(0.639216, 0.588235, 0.419608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_txnvl"]
+size = Vector3(0.42, 3, 0.42)
+
+[sub_resource type="BoxMesh" id="BoxMesh_67cic"]
+size = Vector3(0.24, 2.8, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8o05u"]
+size = Vector3(0.24, 2.8, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_44iur"]
+size = Vector3(0.24, 2.8, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4h7ra"]
+size = Vector3(0.24, 2.8, 0.24)
+
+[sub_resource type="BoxMesh" id="mesh_exit_marker"]
+material = SubResource("mat_bone")
+size = Vector3(3.2, 0.08, 0.22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr8p5"]
+shading_mode = 0
+albedo_color = Color(0.419608, 0.0156863, 0.0352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bw6vl"]
+size = Vector3(0.55, 0.34, 13.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8lxv"]
+shading_mode = 0
+albedo_color = Color(0.419608, 0.0156863, 0.0352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o0mvu"]
+size = Vector3(0.42, 0.28, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckxb7"]
+shading_mode = 0
+albedo_color = Color(0.419608, 0.0156863, 0.0352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h1ehg"]
+size = Vector3(0.42, 0.28, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idfeb"]
+shading_mode = 0
+albedo_color = Color(0.239216, 0.00784314, 0.0235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xwnd2"]
+size = Vector3(15.6, 0.12, 1.35)
+
+[sub_resource type="CylinderMesh" id="mesh_hanging_vessel"]
+material = SubResource("mat_vessel")
+top_radius = 0.045
+bottom_radius = 0.065
+height = 1.0
+radial_segments = 6
+
+[sub_resource type="SphereMesh" id="mesh_wall_flesh_lump"]
+material = SubResource("mat_marrow_lump")
+height = 0.52
+radial_segments = 6
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_78r4d"]
+size = Vector3(16.8, 0.7, 0.34)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxk01"]
+size = Vector3(16.8, 1.1, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4llts"]
+size = Vector3(16.8, 0.7, 0.34)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ytuvb"]
+size = Vector3(16.8, 1.1, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t711o"]
+size = Vector3(0.34, 0.7, 11.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwygh"]
+size = Vector3(0.4, 1.1, 11.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5qiuj"]
+size = Vector3(0.34, 0.7, 11.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65lvp"]
+size = Vector3(0.4, 1.1, 11.2)
+
+[node name="FirstRoom" type="Node3D"]
+script = ExtResource("1_s4f8b")
+room_half_extents = Vector2(8.35, 5.9)
+
+[node name="WalkableFloor" type="StaticBody3D" parent="."]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="WalkableFloor"]
+mesh = SubResource("mesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkableFloor"]
+shape = SubResource("shape_floor")
+
+[node name="FloorReadability" type="Node3D" parent="."]
+
+[node name="CenterWalkablePath" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+mesh = SubResource("mesh_walkable_path")
+
+[node name="WestEdgeShadow" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, 0.145, 0)
+mesh = SubResource("mesh_edge_shadow")
+
+[node name="EastEdgeShadow" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 0.145, 0)
+mesh = SubResource("mesh_edge_shadow")
+
+[node name="FloorVeinRidgeA" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.799, 0, -0.602, 0, 1, 0, 0.602, 0, 0.799, -2.85, 0.175, 2.15)
+mesh = SubResource("mesh_floor_ridge")
+
+[node name="FloorVeinRidgeB" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.914, 0, 0.407, 0, 1, 0, -0.407, 0, 0.914, 2.95, 0.175, 1.85)
+mesh = SubResource("mesh_floor_ridge")
+
+[node name="FloorVeinRidgeC" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.629, 0, 0.777, 0, 1, 0, -0.777, 0, 0.629, -3.35, 0.175, -2.35)
+mesh = SubResource("mesh_floor_ridge")
+
+[node name="FloorVeinRidgeD" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.766, 0, -0.643, 0, 1, 0, 0.643, 0, 0.766, 3.05, 0.175, -3)
+mesh = SubResource("mesh_floor_ridge")
+
+[node name="BonePlateA" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.94, 0, -0.342, 0, 1, 0, 0.342, 0, 0.94, -1.25, 0.18, 3.2)
+mesh = SubResource("mesh_bone_plate_a")
+
+[node name="BonePlateB" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.819, 0, 0.574, 0, 1, 0, -0.574, 0, 0.819, 1.15, 0.18, 1.35)
+mesh = SubResource("mesh_bone_plate_b")
+
+[node name="BonePlateC" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.643, 0, -0.766, 0, 1, 0, 0.766, 0, 0.643, -0.8, 0.18, -2.05)
+mesh = SubResource("mesh_bone_plate_b")
+
+[node name="BonePlateD" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.906, 0, 0.423, 0, 1, 0, -0.423, 0, 0.906, 1.55, 0.18, -4.3)
+mesh = SubResource("mesh_bone_plate_a")
+
+[node name="MarrowLumpA" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(1.4, 0, 0, 0, 0.32, 0, 0, 0, 0.74, -4.2, 0.26, -3)
+mesh = SubResource("mesh_marrow_lump")
+
+[node name="MarrowLumpB" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.92, 0, 0, 0, 0.26, 0, 0, 0, 0.56, 4.15, 0.24, 2.65)
+mesh = SubResource("mesh_marrow_lump")
+
+[node name="MarrowLumpC" type="MeshInstance3D" parent="FloorReadability"]
+transform = Transform3D(0.68, 0, 0, 0, 0.24, 0, 0, 0, 0.44, 3.45, 0.23, -4.1)
+mesh = SubResource("mesh_marrow_lump")
+
+[node name="VascularStrands" type="Node3D" parent="."]
+
+[node name="StrandA" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(6.2, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -1.2, 0.16, -2.6)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandB" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(0, 0, -0.06, 0, 0.06, 0, 4.4, 0, 0, 2.4, 0.17, 1.1)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandC" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(4.2, 0, 0, 0, 0.045, 0, 0, 0, 0.045, 1.8, 0.18, -0.4)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandD" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(0.45, 0, 3.2, 0, 0.04, 0, -0.04, 0, 0.45, -3.15, 0.19, 2.1)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandE" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(0.38, 0, -2.7, 0, 0.04, 0, 0.04, 0, 0.38, 3.25, 0.19, -1.9)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandF" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(2.9, 0, 0.7, 0, 0.045, 0, -0.045, 0, 0.19, -4.75, 0.2, 1.55)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="StrandG" type="MeshInstance3D" parent="VascularStrands"]
+transform = Transform3D(2.7, 0, -0.5, 0, 0.045, 0, 0.045, 0, 0.21, 4.8, 0.2, -0.85)
+mesh = SubResource("mesh_vessel_strand")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="SouthWall" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/SouthWall"]
+mesh = SubResource("mesh_wall_long")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/SouthWall"]
+shape = SubResource("shape_wall_long")
+
+[node name="WestWall" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.9, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/WestWall"]
+mesh = SubResource("mesh_wall_short")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WestWall"]
+shape = SubResource("shape_wall_short")
+
+[node name="EastWall" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.9, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/EastWall"]
+mesh = SubResource("mesh_wall_short")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/EastWall"]
+shape = SubResource("shape_wall_short")
+
+[node name="NorthWallLeft" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.9, -6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/NorthWallLeft"]
+mesh = SubResource("mesh_wall_exit")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/NorthWallLeft"]
+shape = SubResource("shape_wall_exit")
+
+[node name="NorthWallRight" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.9, -6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/NorthWallRight"]
+mesh = SubResource("mesh_wall_exit")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/NorthWallRight"]
+shape = SubResource("shape_wall_exit")
+
+[node name="RibArchitecture" type="Node3D" parent="."]
+
+[node name="WestRibA" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -8.7, 1.25, -4.6)
+mesh = SubResource("mesh_rib")
+
+[node name="WestRibB" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -8.7, 1.25, -2.2)
+mesh = SubResource("mesh_rib")
+
+[node name="WestRibC" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -8.7, 1.25, 0.2)
+mesh = SubResource("mesh_rib")
+
+[node name="WestRibD" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -8.7, 1.25, 2.6)
+mesh = SubResource("mesh_rib")
+
+[node name="WestRibE" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -8.7, 1.25, 5)
+mesh = SubResource("mesh_rib")
+
+[node name="EastRibA" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 8.7, 1.25, -4.6)
+mesh = SubResource("mesh_rib")
+
+[node name="EastRibB" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 8.7, 1.25, -2.2)
+mesh = SubResource("mesh_rib")
+
+[node name="EastRibC" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 8.7, 1.25, 0.2)
+mesh = SubResource("mesh_rib")
+
+[node name="EastRibD" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 8.7, 1.25, 2.6)
+mesh = SubResource("mesh_rib")
+
+[node name="EastRibE" type="MeshInstance3D" parent="RibArchitecture"]
+transform = Transform3D(0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, 8.7, 1.25, 5)
+mesh = SubResource("mesh_rib")
+
+[node name="BackRibCage" type="Node3D" parent="RibArchitecture"]
+
+[node name="BackRibLeftA" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.545, 0.838, 0, -0.838, 0.545, 0, 0, 0, 1, -3.4, 1.55, -6.28)
+mesh = SubResource("mesh_wall_rib")
+
+[node name="BackRibRightA" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.545, -0.838, 0, 0.838, 0.545, 0, 0, 0, 1, 3.4, 1.55, -6.28)
+mesh = SubResource("mesh_wall_rib")
+
+[node name="BackRibLeftB" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.669, 0.743, 0, -0.743, 0.669, 0, 0, 0, 1, -4.85, 1.35, -6.22)
+mesh = SubResource("mesh_wall_rib")
+
+[node name="BackRibRightB" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.669, -0.743, 0, 0.743, 0.669, 0, 0, 0, 1, 4.85, 1.35, -6.22)
+mesh = SubResource("mesh_wall_rib")
+
+[node name="BackBoneSpurA" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.574, 0.819, 0, -0.819, 0.574, 0, 0, 0, 1, -1.15, 1, -6.2)
+mesh = SubResource("mesh_bone_spur")
+
+[node name="BackBoneSpurB" type="MeshInstance3D" parent="RibArchitecture/BackRibCage"]
+transform = Transform3D(0.574, -0.819, 0, 0.819, 0.574, 0, 0, 0, 1, 1.15, 1, -6.2)
+mesh = SubResource("mesh_bone_spur")
+
+[node name="CathedralColumns" type="Node3D" parent="RibArchitecture"]
+
+[node name="WestColumnA" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.55, -4.2)
+material_override = SubResource("StandardMaterial3D_6r751")
+mesh = SubResource("BoxMesh_s4f8b")
+
+[node name="WestColumnB" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_30ct7")
+mesh = SubResource("BoxMesh_xvb8q")
+
+[node name="WestColumnC" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.55, 4.2)
+material_override = SubResource("StandardMaterial3D_86vrr")
+mesh = SubResource("BoxMesh_6bw03")
+
+[node name="EastColumnA" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8, 1.55, -4.2)
+material_override = SubResource("StandardMaterial3D_lbnyo")
+mesh = SubResource("BoxMesh_hy16x")
+
+[node name="EastColumnB" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_q7umc")
+mesh = SubResource("BoxMesh_fxel0")
+
+[node name="EastColumnC" type="MeshInstance3D" parent="RibArchitecture/CathedralColumns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8, 1.55, 4.2)
+material_override = SubResource("StandardMaterial3D_qoeee")
+mesh = SubResource("BoxMesh_txnvl")
+
+[node name="CathedralArches" type="Node3D" parent="RibArchitecture"]
+
+[node name="ArchLeftA" type="MeshInstance3D" parent="RibArchitecture/CathedralArches"]
+transform = Transform3D(0.788011, 0.615662, 0, -0.615662, 0.788011, 0, 0, 0, 1, -2.7, 2.65, -3.5)
+mesh = SubResource("BoxMesh_67cic")
+
+[node name="ArchRightA" type="MeshInstance3D" parent="RibArchitecture/CathedralArches"]
+transform = Transform3D(0.788011, -0.615662, 0, 0.615662, 0.788011, 0, 0, 0, 1, 2.7, 2.65, -3.5)
+mesh = SubResource("BoxMesh_8o05u")
+
+[node name="ArchLeftB" type="MeshInstance3D" parent="RibArchitecture/CathedralArches"]
+transform = Transform3D(0.788011, 0.615662, 0, -0.615662, 0.788011, 0, 0, 0, 1, -2.7, 2.65, 2.8)
+mesh = SubResource("BoxMesh_44iur")
+
+[node name="ArchRightB" type="MeshInstance3D" parent="RibArchitecture/CathedralArches"]
+transform = Transform3D(0.788011, -0.615662, 0, 0.615662, 0.788011, 0, 0, 0, 1, 2.7, 2.65, 2.8)
+mesh = SubResource("BoxMesh_4h7ra")
+
+[node name="Exit" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, -6.75)
+
+[node name="Threshold" type="MeshInstance3D" parent="Exit"]
+mesh = SubResource("mesh_exit_marker")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2.4)
+
+[node name="EnemyTest_01" parent="." instance=ExtResource("1_enemy_test")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0.15, -1.2)
+
+[node name="EnemyTest_02" parent="." instance=ExtResource("1_enemy_test")]
+transform = Transform3D(0.94, 0, 0.342, 0, 1, 0, -0.342, 0, 0.94, 1.8, 0.15, -2.4)
+
+[node name="EnemyTest_03" parent="." instance=ExtResource("1_enemy_test")]
+transform = Transform3D(0.766, 0, -0.643, 0, 1, 0, 0.643, 0, 0.766, 0.2, 0.15, -4)
+
+[node name="RoomLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+light_color = Color(0.85, 0.08, 0.055, 1)
+light_energy = 2.15
+omni_range = 10.5
+
+[node name="VascularRoof" type="Node3D" parent="."]
+
+[node name="MainCeilingVessel" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35, 0)
+material_override = SubResource("StandardMaterial3D_xr8p5")
+mesh = SubResource("BoxMesh_bw6vl")
+
+[node name="LeftCeilingVessel" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 3.12, 0)
+material_override = SubResource("StandardMaterial3D_w8lxv")
+mesh = SubResource("BoxMesh_o0mvu")
+
+[node name="RightCeilingVessel" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 3.12, 0)
+material_override = SubResource("StandardMaterial3D_ckxb7")
+mesh = SubResource("BoxMesh_h1ehg")
+
+[node name="BloodMembrane" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.03, 0)
+material_override = SubResource("StandardMaterial3D_idfeb")
+mesh = SubResource("BoxMesh_xwnd2")
+
+[node name="HangingVesselA" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(0.36, 0, 0.14, 0, 1.7, 0, -0.14, 0, 0.36, -2.4, 2.28, -2.8)
+mesh = SubResource("mesh_hanging_vessel")
+
+[node name="HangingVesselB" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(0.32, 0, -0.18, 0, 1.35, 0, 0.18, 0, 0.32, 2.15, 2.4, 1.8)
+mesh = SubResource("mesh_hanging_vessel")
+
+[node name="HangingVesselC" type="MeshInstance3D" parent="VascularRoof"]
+transform = Transform3D(0.26, 0, 0.12, 0, 1.05, 0, -0.12, 0, 0.26, 0.55, 2.52, -4.25)
+mesh = SubResource("mesh_hanging_vessel")
+
+[node name="WallGrowths" type="Node3D" parent="."]
+
+[node name="WestFleshMassA" type="MeshInstance3D" parent="WallGrowths"]
+transform = Transform3D(0.78, 0, 0, 0, 1.18, 0, 0, 0, 0.34, -8.62, 0.82, -3.2)
+mesh = SubResource("mesh_wall_flesh_lump")
+
+[node name="WestFleshMassB" type="MeshInstance3D" parent="WallGrowths"]
+transform = Transform3D(0.56, 0, 0, 0, 0.82, 0, 0, 0, 0.28, -8.6, 0.62, 2.9)
+mesh = SubResource("mesh_wall_flesh_lump")
+
+[node name="EastFleshMassA" type="MeshInstance3D" parent="WallGrowths"]
+transform = Transform3D(0.72, 0, 0, 0, 1.05, 0, 0, 0, 0.32, 8.62, 0.78, 3.45)
+mesh = SubResource("mesh_wall_flesh_lump")
+
+[node name="EastFleshMassB" type="MeshInstance3D" parent="WallGrowths"]
+transform = Transform3D(0.5, 0, 0, 0, 0.76, 0, 0, 0, 0.24, 8.6, 0.58, -2.55)
+mesh = SubResource("mesh_wall_flesh_lump")
+
+[node name="WorldBounds" type="Node3D" parent="."]
+
+[node name="NorthSafetyRail" type="StaticBody3D" parent="WorldBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, -5.95)
+
+[node name="Mesh" type="MeshInstance3D" parent="WorldBounds/NorthSafetyRail"]
+mesh = SubResource("BoxMesh_78r4d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBounds/NorthSafetyRail"]
+shape = SubResource("BoxShape3D_nxk01")
+
+[node name="SouthSafetyRail" type="StaticBody3D" parent="WorldBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 5.95)
+
+[node name="Mesh" type="MeshInstance3D" parent="WorldBounds/SouthSafetyRail"]
+mesh = SubResource("BoxMesh_4llts")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBounds/SouthSafetyRail"]
+shape = SubResource("BoxShape3D_ytuvb")
+
+[node name="WestSafetyRail" type="StaticBody3D" parent="WorldBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35, 0.42, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WorldBounds/WestSafetyRail"]
+mesh = SubResource("BoxMesh_t711o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBounds/WestSafetyRail"]
+shape = SubResource("BoxShape3D_bwygh")
+
+[node name="EastSafetyRail" type="StaticBody3D" parent="WorldBounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.35, 0.42, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="WorldBounds/EastSafetyRail"]
+mesh = SubResource("BoxMesh_5qiuj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBounds/EastSafetyRail"]
+shape = SubResource("BoxShape3D_65lvp")
+
+[node name="BloodMage_Static_Test_01" parent="." instance=ExtResource("3_30ct7")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0.8, 0.7)
