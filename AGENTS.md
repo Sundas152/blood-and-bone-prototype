@@ -68,7 +68,7 @@ After editing, Codex should report:
 
 # Project Identity
 
-Blood & Bone is a Godot 4.4 2.5D/3D biological horror-action dungeon crawler.
+Blood & Bone is a Godot 4.7 2.5D/3D biological horror-action dungeon crawler.
 
 The player’s body is the combat system.
 
@@ -131,7 +131,7 @@ Do **not** focus on yet:
 
 Use:
 
-- Godot 4.4-compatible GDScript.
+- Godot 4.7-compatible GDScript.
 - 3D scenes for the main game foundation.
 - 2.5D gameplay structure.
 - Controlled behind-side camera.
