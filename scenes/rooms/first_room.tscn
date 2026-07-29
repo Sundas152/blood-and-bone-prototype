@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bp4j6np86j8l8"]
+[gd_scene load_steps=67 format=3 uid="uid://bp4j6np86j8l8"]
 
 [ext_resource type="PackedScene" uid="uid://bu1kpaya8efqf" path="res://scenes/enemies/test_enemy.tscn" id="1_enemy_test"]
 [ext_resource type="Script" uid="uid://cr1mcind57udi" path="res://scripts/rooms/first_room_bounds.gd" id="1_s4f8b"]
@@ -6,7 +6,8 @@
 
 [sub_resource type="StandardMaterial3D" id="mat_floor"]
 shading_mode = 0
-albedo_color = Color(0.13, 0.012, 0.018, 1)
+albedo_color = Color(0.095, 0.009, 0.015, 1)
+roughness = 0.94
 
 [sub_resource type="BoxMesh" id="mesh_floor"]
 material = SubResource("mat_floor")
@@ -17,7 +18,8 @@ size = Vector3(18, 0.22, 13)
 
 [sub_resource type="StandardMaterial3D" id="mat_walkable_path"]
 shading_mode = 0
-albedo_color = Color(0.18, 0.15, 0.13, 1)
+albedo_color = Color(0.155, 0.115, 0.095, 1)
+roughness = 0.82
 
 [sub_resource type="BoxMesh" id="mesh_walkable_path"]
 material = SubResource("mat_walkable_path")
@@ -25,7 +27,8 @@ size = Vector3(3.8, 0.035, 10.4)
 
 [sub_resource type="StandardMaterial3D" id="mat_edge_shadow"]
 shading_mode = 0
-albedo_color = Color(0.035, 0.006, 0.012, 1)
+albedo_color = Color(0.021, 0.003, 0.008, 1)
+roughness = 1.0
 
 [sub_resource type="BoxMesh" id="mesh_edge_shadow"]
 material = SubResource("mat_edge_shadow")
@@ -33,7 +36,11 @@ size = Vector3(2.15, 0.035, 11.6)
 
 [sub_resource type="StandardMaterial3D" id="mat_floor_ridge"]
 shading_mode = 0
-albedo_color = Color(0.27, 0.026, 0.035, 1)
+albedo_color = Color(0.22, 0.014, 0.026, 1)
+roughness = 0.58
+emission_enabled = true
+emission = Color(0.055, 0.002, 0.007, 1)
+emission_energy_multiplier = 0.55
 
 [sub_resource type="BoxMesh" id="mesh_floor_ridge"]
 material = SubResource("mat_floor_ridge")
@@ -41,7 +48,8 @@ size = Vector3(0.18, 0.045, 3.8)
 
 [sub_resource type="StandardMaterial3D" id="mat_bone_plate"]
 shading_mode = 0
-albedo_color = Color(0.58, 0.52, 0.38, 1)
+albedo_color = Color(0.47, 0.43, 0.31, 1)
+roughness = 0.88
 
 [sub_resource type="BoxMesh" id="mesh_bone_plate_a"]
 material = SubResource("mat_bone_plate")
@@ -53,7 +61,11 @@ size = Vector3(0.78, 0.045, 0.38)
 
 [sub_resource type="StandardMaterial3D" id="mat_marrow_lump"]
 shading_mode = 0
-albedo_color = Color(0.31, 0.035, 0.048, 1)
+albedo_color = Color(0.27, 0.018, 0.036, 1)
+roughness = 0.52
+emission_enabled = true
+emission = Color(0.075, 0.003, 0.012, 1)
+emission_energy_multiplier = 0.7
 
 [sub_resource type="SphereMesh" id="mesh_marrow_lump"]
 material = SubResource("mat_marrow_lump")
@@ -64,7 +76,11 @@ rings = 4
 
 [sub_resource type="StandardMaterial3D" id="mat_vessel"]
 shading_mode = 0
-albedo_color = Color(0.34, 0.018, 0.032, 1)
+albedo_color = Color(0.29, 0.009, 0.026, 1)
+roughness = 0.46
+emission_enabled = true
+emission = Color(0.085, 0.002, 0.011, 1)
+emission_energy_multiplier = 0.8
 
 [sub_resource type="CylinderMesh" id="mesh_vessel_strand"]
 material = SubResource("mat_vessel")
@@ -75,7 +91,8 @@ radial_segments = 6
 
 [sub_resource type="StandardMaterial3D" id="mat_dark"]
 shading_mode = 0
-albedo_color = Color(0.022, 0.018, 0.02, 1)
+albedo_color = Color(0.014, 0.011, 0.014, 1)
+roughness = 1.0
 
 [sub_resource type="BoxMesh" id="mesh_wall_long"]
 material = SubResource("mat_dark")
@@ -100,7 +117,16 @@ size = Vector3(6, 1.8, 0.65)
 
 [sub_resource type="StandardMaterial3D" id="mat_bone"]
 shading_mode = 0
-albedo_color = Color(0.68, 0.61, 0.43, 1)
+albedo_color = Color(0.55, 0.51, 0.36, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_exit_bone"]
+shading_mode = 0
+albedo_color = Color(0.52, 0.31, 0.22, 1)
+roughness = 0.72
+emission_enabled = true
+emission = Color(0.24, 0.018, 0.026, 1)
+emission_energy_multiplier = 1.35
 
 [sub_resource type="CapsuleMesh" id="mesh_rib"]
 material = SubResource("mat_bone")
@@ -178,7 +204,7 @@ size = Vector3(0.24, 2.8, 0.24)
 size = Vector3(0.24, 2.8, 0.24)
 
 [sub_resource type="BoxMesh" id="mesh_exit_marker"]
-material = SubResource("mat_bone")
+material = SubResource("mat_exit_bone")
 size = Vector3(3.2, 0.08, 0.22)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xr8p5"]
@@ -517,6 +543,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, -6.75)
 [node name="Threshold" type="MeshInstance3D" parent="Exit"]
 mesh = SubResource("mesh_exit_marker")
 
+[node name="ExitGuideLight" type="OmniLight3D" parent="Exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.72)
+light_color = Color(0.72, 0.075, 0.06, 1)
+light_energy = 0.9
+omni_range = 4.2
+shadow_enabled = true
+
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 2.4)
 
@@ -531,9 +564,21 @@ transform = Transform3D(0.766, 0, -0.643, 0, 1, 0, 0.643, 0, 0.766, 0.2, 0.15, -
 
 [node name="RoomLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
-light_color = Color(0.85, 0.08, 0.055, 1)
-light_energy = 2.15
+light_color = Color(0.72, 0.045, 0.042, 1)
+light_energy = 1.75
 omni_range = 10.5
+
+[node name="WestMarrowAccent" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 1.25, -1.4)
+light_color = Color(0.47, 0.015, 0.055, 1)
+light_energy = 0.62
+omni_range = 4.6
+
+[node name="EastBoneAccent" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65, 1.8, 2.6)
+light_color = Color(0.52, 0.31, 0.16, 1)
+light_energy = 0.48
+omni_range = 4.0
 
 [node name="VascularRoof" type="Node3D" parent="."]
 
