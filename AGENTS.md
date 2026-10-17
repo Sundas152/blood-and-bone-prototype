@@ -354,3 +354,26 @@ Priority order:
 5. Improve crimson slash trail.
 6. Improve enemy hit reactions.
 7. Keep the first room readable and atmospheric.
+
+---
+
+# Persistent Execution Guardrails
+
+Before proposing gameplay changes, read `docs/CURRENT_PROTOTYPE.md`.
+
+`docs/CURRENT_PROTOTYPE.md` is an operational mirror of the current project state. It does not invent, replace, or overwrite Blood & Bone canon. The current design authority is Notion’s **“BLOOD & BONE — Winning Current State.”**
+
+When working on this project:
+
+1. Inspect and report the relevant implementation before editing.
+2. Work on one explicitly approved objective at a time.
+3. Make the smallest testable change that advances that objective.
+4. Avoid unrelated refactoring.
+5. Do not expand systems that have not proven themselves fun.
+6. Do not modify anything under `addons/godot_ai/`.
+7. Do not stage, commit, push, pull, discard, delete, or otherwise remove changes without the user’s explicit approval.
+8. Report conflicts between documentation and implementation instead of silently resolving them.
+9. Placeholder assets are acceptable during prototype development.
+10. Gameplay readability outranks visual polish.
+
+Do not treat an operational note as permission to broaden scope. When documentation, implementation, and design authority disagree, report the conflict and follow any documented temporary operational exception. Ask for direction before making a consequential change, but do not allow a documented non-blocking exception to halt unrelated approved work.
