@@ -8,9 +8,11 @@ extends CharacterBody3D
 @export var walk_animation_speed: float = 7.2
 @export var walk_swing_amount: float = 0.38
 @export var walk_bob_amount: float = 0.055
-@export var summon_duration: float = 2.8
+@export var summon_duration: float = 1.8
 @export var slash_damage: int = 1
 @export var input_deadzone: float = 0.08
+@export var temporary_max_health: int = 3
+@export var defeat_reset_delay: float = 1.25
 
 var last_move_direction: Vector3 = Vector3.FORWARD
 var follow_camera: Camera3D
@@ -73,8 +75,12 @@ var left_combat_arm_base_scale: Vector3 = Vector3.ONE
 var right_grip_hand_base_scale: Vector3 = Vector3.ONE
 var left_grip_hand_base_scale: Vector3 = Vector3.ONE
 var arm_transition_vessel_base_scales: Dictionary = {}
-var fallback_attack_was_pressed: bool = false
-var fallback_dismiss_was_pressed: bool = false
+var temporary_health: int
+var defeated: bool = false
+var visual_root_base_transform: Transform3D
+var hit_reaction_tween: Tween
+var defeat_reaction_tween: Tween
+var defeat_reset_timer: SceneTreeTimer
 
 @onready var model := get_node_or_null("Model") as Node3D
 @onready var left_arm := get_node_or_null("Model/LeftArm") as Node3D
@@ -113,10 +119,120 @@ func _ready() -> void:
 	if camera_path != NodePath():
 		follow_camera = get_node_or_null(camera_path) as Camera3D
 	_cache_animation_pose()
+	_cache_temporary_health_state()
 	_prepare_veinmore()
 
 
+func take_hit(damage: int, hit_direction: Vector3 = Vector3.ZERO) -> bool:
+	if defeated:
+		return true
+	if damage <= 0 or temporary_health <= 0:
+		return temporary_health <= 0
+
+	temporary_health = maxi(temporary_health - damage, 0)
+	print("IAN_HP: %d/%d" % [temporary_health, temporary_max_health])
+	if temporary_health <= 0:
+		_begin_defeat(hit_direction)
+		return true
+	_play_hit_reaction(hit_direction)
+	return false
+
+
+func restore_temporary_health() -> void:
+	if defeated:
+		return
+	temporary_health = temporary_max_health
+	_stop_and_restore_hit_reaction()
+	print("IAN_HP_RESTORED: %d/%d" % [temporary_health, temporary_max_health])
+
+
+func _cache_temporary_health_state() -> void:
+	temporary_health = temporary_max_health
+	if visual_root != null:
+		visual_root_base_transform = visual_root.transform
+
+
+func _play_hit_reaction(hit_direction: Vector3) -> void:
+	if visual_root == null:
+		return
+
+	_stop_and_restore_hit_reaction()
+	var local_direction := Vector3.ZERO
+	if hit_direction.length_squared() > 0.0001:
+		local_direction = global_transform.basis.inverse() * hit_direction.normalized()
+		local_direction.y = 0.0
+		local_direction = local_direction.normalized()
+
+	var base_position := visual_root_base_transform.origin
+	var impact_position := base_position + local_direction * 0.1 + Vector3.DOWN * 0.06
+
+	visual_root.position = impact_position
+	hit_reaction_tween = create_tween()
+	hit_reaction_tween.tween_property(visual_root, "position", base_position, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	hit_reaction_tween.chain().tween_callback(_finish_hit_reaction)
+
+
+func _stop_and_restore_hit_reaction() -> void:
+	if hit_reaction_tween != null and hit_reaction_tween.is_running():
+		hit_reaction_tween.kill()
+	hit_reaction_tween = null
+	if visual_root != null:
+		visual_root.transform = visual_root_base_transform
+
+
+func _finish_hit_reaction() -> void:
+	if defeated:
+		return
+	if visual_root != null:
+		visual_root.transform = visual_root_base_transform
+	hit_reaction_tween = null
+
+
+func _begin_defeat(hit_direction: Vector3) -> void:
+	if defeated:
+		return
+	defeated = true
+
+	velocity = Vector3.ZERO
+	movement_locked = true
+	_stop_and_restore_hit_reaction()
+	_end_damage_window()
+	_hide_veinmore_trail()
+	damaged_this_slash.clear()
+	veinmore_active = false
+	is_summoning = false
+	is_attacking = false
+	is_dismissing = false
+	_prepare_veinmore()
+	_restore_normal_visual_pose()
+	movement_locked = true
+
+	if visual_root != null:
+		var local_direction := Vector3.ZERO
+		if hit_direction.length_squared() > 0.0001:
+			local_direction = global_transform.basis.inverse() * hit_direction.normalized()
+			local_direction.y = 0.0
+			local_direction = local_direction.normalized()
+		var collapse_side := 1.0
+		if not is_zero_approx(local_direction.x):
+			collapse_side = signf(local_direction.x)
+		var collapse_position := visual_root_base_transform.origin + local_direction * 0.06 + Vector3.DOWN * 0.22
+		var collapse_rotation := visual_root_base_transform.basis.get_euler() + Vector3(deg_to_rad(8.0), 0.0, deg_to_rad(12.0) * collapse_side)
+		defeat_reaction_tween = get_tree().create_tween()
+		defeat_reaction_tween.set_parallel(true)
+		defeat_reaction_tween.tween_property(visual_root, "position", collapse_position, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		defeat_reaction_tween.tween_property(visual_root, "rotation", collapse_rotation, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	var scene_tree := get_tree()
+	defeat_reset_timer = scene_tree.create_timer(maxf(defeat_reset_delay, 0.01))
+	defeat_reset_timer.timeout.connect(Callable(scene_tree, "reload_current_scene"), CONNECT_ONE_SHOT)
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
 func _physics_process(delta: float) -> void:
+	if defeated:
+		velocity = Vector3.ZERO
+		return
 	if _is_attack_just_pressed():
 		_handle_attack_input()
 	if _is_dismiss_just_pressed():
@@ -147,51 +263,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _get_movement_input() -> Vector2:
-	if _has_movement_actions():
-		return Input.get_vector("move_left", "move_right", "move_up", "move_down")
-
-	var input_direction := Vector2.ZERO
-	if Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT):
-		input_direction.x -= 1.0
-	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):
-		input_direction.x += 1.0
-	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
-		input_direction.y -= 1.0
-	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
-		input_direction.y += 1.0
-
-	return input_direction.normalized()
-
-
-func _has_movement_actions() -> bool:
-	return InputMap.has_action("move_left") \
-		and InputMap.has_action("move_right") \
-		and InputMap.has_action("move_up") \
-		and InputMap.has_action("move_down")
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 
 func _is_attack_just_pressed() -> bool:
-	if InputMap.has_action("attack") and Input.is_action_just_pressed("attack"):
-		return true
-	if InputMap.has_action("ui_accept") and Input.is_action_just_pressed("ui_accept"):
-		return true
-
-	var is_pressed := Input.is_physical_key_pressed(KEY_J) or Input.is_physical_key_pressed(KEY_SPACE)
-	var just_pressed := is_pressed and not fallback_attack_was_pressed
-	fallback_attack_was_pressed = is_pressed
-	return just_pressed
+	return Input.is_action_just_pressed("attack")
 
 
 func _is_dismiss_just_pressed() -> bool:
-	if InputMap.has_action("dismiss_weapon") and Input.is_action_just_pressed("dismiss_weapon"):
-		return true
-	if InputMap.has_action("ui_cancel") and Input.is_action_just_pressed("ui_cancel"):
-		return true
-
-	var is_pressed := Input.is_physical_key_pressed(KEY_K) or Input.is_physical_key_pressed(KEY_ESCAPE)
-	var just_pressed := is_pressed and not fallback_dismiss_was_pressed
-	fallback_dismiss_was_pressed = is_pressed
-	return just_pressed
+	return Input.is_action_just_pressed("dismiss_weapon")
 
 
 func _face_direction(direction: Vector3, delta: float) -> void:
@@ -578,7 +658,7 @@ func _prepare_veinmore() -> void:
 
 
 func _handle_attack_input() -> void:
-	if is_summoning or is_attacking or is_dismissing:
+	if defeated or is_summoning or is_attacking or is_dismissing:
 		return
 
 	if not veinmore_active:
@@ -588,13 +668,15 @@ func _handle_attack_input() -> void:
 
 
 func _handle_dismiss_input() -> void:
-	if is_summoning or is_attacking or is_dismissing or not veinmore_active:
+	if defeated or is_summoning or is_attacking or is_dismissing or not veinmore_active:
 		return
 
 	_dismiss_veinmore()
 
 
 func _dismiss_veinmore() -> void:
+	if defeated:
+		return
 	is_dismissing = true
 	veinmore_active = false
 	movement_locked = true
@@ -631,6 +713,8 @@ func _dismiss_veinmore() -> void:
 		tween.tween_property(right_arm, "scale", right_arm_base_scale, dismiss_time).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 	await tween.finished
+	if defeated:
+		return
 	_prepare_veinmore()
 	_restore_normal_visual_pose()
 	is_dismissing = false
@@ -655,7 +739,7 @@ func reset_visual_pose(include_arms: bool = true) -> void:
 
 
 func _summon_veinmore() -> void:
-	if veinmore == null:
+	if defeated or veinmore == null:
 		return
 
 	is_summoning = true
@@ -770,6 +854,8 @@ func _summon_veinmore() -> void:
 		tween.tween_property(extraction_strand, "scale", Vector3(0.05, 0.05, 0.05), settle_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 	await tween.finished
+	if defeated:
+		return
 	if extraction_strand != null:
 		extraction_strand.visible = false
 	if veinmore_handle_point != null:
@@ -792,7 +878,7 @@ func _summon_veinmore() -> void:
 
 
 func _heavy_slash() -> void:
-	if weapon_attachment == null or veinmore_swing_pivot == null:
+	if defeated or weapon_attachment == null or veinmore_swing_pivot == null:
 		return
 
 	is_attacking = true
@@ -979,17 +1065,23 @@ func _heavy_slash() -> void:
 		tween.tween_property(left_grip_hand, "position", Vector3(-0.02, -0.43, -0.05), recovery_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 	await tween.finished
+	if defeated:
+		return
 	is_attacking = false
 	movement_locked = false
 	reset_visual_pose(false)
 
 
 func _begin_veinmore_active() -> void:
+	if defeated:
+		return
 	print("VEINMORE_ACTIVE")
 	_begin_damage_window()
 
 
 func _begin_damage_window() -> void:
+	if defeated:
+		return
 	if veinmore_hitbox != null:
 		veinmore_hitbox.monitoring = true
 	_trigger_camera_feedback(0.04, 0.09)
@@ -1026,17 +1118,19 @@ func _hide_veinmore_trail() -> void:
 
 
 func _check_veinmore_hits() -> void:
-	if veinmore_hitbox == null or not veinmore_hitbox.monitoring:
+	if defeated or veinmore_hitbox == null or not veinmore_hitbox.monitoring:
 		return
 
 	for body in veinmore_hitbox.get_overlapping_bodies():
+		if body == self:
+			continue
 		if body in damaged_this_slash:
 			continue
 		if body.has_method("take_hit"):
 			damaged_this_slash.append(body)
 			var hit_direction := body.global_position - global_position
-			var defeated: bool = body.take_hit(slash_damage, hit_direction)
-			if defeated:
+			var target_defeated: bool = body.take_hit(slash_damage, hit_direction)
+			if target_defeated:
 				_trigger_camera_feedback(0.1, 0.18)
 			else:
 				_trigger_camera_feedback(0.05, 0.1)
