@@ -1,5 +1,11 @@
 extends Node3D
 
+const EXIT_PULSE_HALF_CYCLE: float = 0.5
+const EXIT_PULSE_EMISSION_LOW: Color = Color(0.96, 0.76, 0.36, 1.0)
+const EXIT_PULSE_EMISSION_HIGH: Color = Color(1.0, 0.9, 0.62, 1.0)
+const EXIT_PULSE_EMISSION_ENERGY_LOW: float = 2.4
+const EXIT_PULSE_EMISSION_ENERGY_HIGH: float = 3.4
+
 @export var player_path: NodePath = NodePath("../Player")
 @export var reset_marker_path: NodePath = NodePath("PlayerSpawn")
 @export var fall_reset_y: float = -2.0
@@ -25,6 +31,7 @@ var exit_light_base_color: Color
 var exit_light_base_energy: float
 var active_exit_material: StandardMaterial3D
 var completion_reset_timer: SceneTreeTimer
+var exit_pulse_tween: Tween
 
 
 func _ready() -> void:
@@ -88,6 +95,9 @@ func _reset_player() -> void:
 
 
 func _set_exit_inactive() -> void:
+	if exit_pulse_tween != null:
+		exit_pulse_tween.kill()
+		exit_pulse_tween = null
 	exit_active = false
 	exit_threshold.material_override = threshold_base_material_override
 	exit_guide_light.light_color = exit_light_base_color.darkened(0.55)
@@ -107,8 +117,60 @@ func _activate_exit() -> void:
 	exit_active = true
 	exit_threshold.material_override = active_exit_material
 	exit_guide_light.light_color = Color(0.96, 0.72, 0.3, 1.0)
-	exit_guide_light.light_energy = maxf(exit_light_base_energy * 2.4, 1.8)
+	_start_exit_pulse()
 	print("TRAINING_EXIT_ACTIVE")
+
+
+func _start_exit_pulse() -> void:
+	if exit_pulse_tween != null:
+		exit_pulse_tween.kill()
+
+	var light_energy_low: float = maxf(exit_light_base_energy * 2.6, 2.0)
+	var light_energy_high: float = maxf(exit_light_base_energy * 3.8, 2.8)
+	active_exit_material.emission = EXIT_PULSE_EMISSION_LOW
+	active_exit_material.emission_energy_multiplier = EXIT_PULSE_EMISSION_ENERGY_LOW
+	exit_guide_light.light_energy = light_energy_low
+
+	exit_pulse_tween = create_tween().bind_node(self)
+	exit_pulse_tween.set_loops()
+	exit_pulse_tween.set_trans(Tween.TRANS_SINE)
+	exit_pulse_tween.set_ease(Tween.EASE_IN_OUT)
+	exit_pulse_tween.tween_property(
+		active_exit_material,
+		"emission",
+		EXIT_PULSE_EMISSION_HIGH,
+		EXIT_PULSE_HALF_CYCLE
+	)
+	exit_pulse_tween.parallel().tween_property(
+		active_exit_material,
+		"emission_energy_multiplier",
+		EXIT_PULSE_EMISSION_ENERGY_HIGH,
+		EXIT_PULSE_HALF_CYCLE
+	)
+	exit_pulse_tween.parallel().tween_property(
+		exit_guide_light,
+		"light_energy",
+		light_energy_high,
+		EXIT_PULSE_HALF_CYCLE
+	)
+	exit_pulse_tween.tween_property(
+		active_exit_material,
+		"emission",
+		EXIT_PULSE_EMISSION_LOW,
+		EXIT_PULSE_HALF_CYCLE
+	)
+	exit_pulse_tween.parallel().tween_property(
+		active_exit_material,
+		"emission_energy_multiplier",
+		EXIT_PULSE_EMISSION_ENERGY_LOW,
+		EXIT_PULSE_HALF_CYCLE
+	)
+	exit_pulse_tween.parallel().tween_property(
+		exit_guide_light,
+		"light_energy",
+		light_energy_low,
+		EXIT_PULSE_HALF_CYCLE
+	)
 
 
 func _has_player_reached_exit() -> bool:
