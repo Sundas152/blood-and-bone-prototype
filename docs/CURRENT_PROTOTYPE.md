@@ -90,8 +90,16 @@ The following behavior has been inspected or tested:
 - Ian enters defeat exactly once at zero temporary health, stops movement and combat, safely neutralizes Veinmore, and automatically reloads the current scene after a short delay.
 - Scene reload restores Ian, the blood mage, all three skeleton targets, active combat state, and temporary visuals to their initial encounter state.
 - Defeating the blood mage activates the existing exit with pale/gold feedback that remains active after the blood mage is removed.
+- The active exit uses one room-bound looping tween with a `0.5s` half-cycle and `1.0s` full pulse.
+- The pulse remains within the existing ivory/gold palette, varies threshold emission intensity from `2.4–3.4`, and varies `ExitGuideLight` energy from `2.34–3.42`.
+- The exit reaches its first bright peak within `0.5s` and is unmistakable from the normal combat framing while remaining subordinate to the blood mage's attack telegraph.
+- The exit-readability correction changes no scaling, scene nodes, camera behavior, or completion logic.
 - Reaching the active exit safely disables Veinmore's hitbox and trail, stops Ian, and predictably reloads the complete training encounter.
-- The victory-and-reset loop completed two consecutive verification cycles without exit-triggered damage during the completion delay.
+- The exit remains inactive before blood-mage defeat, and skeleton defeats do not activate it.
+- Blood-mage defeat activates the exit, activation remains readable after the mage is removed, and Ian can reach it from within the room boundary.
+- Two victory-and-reset loops and one Ian defeat-and-reset loop passed.
+- Scene reload restores the exact inactive threshold material and guide-light baseline.
+- The complete combat evaluation found no blocking combat or stability defects and produced no runtime errors, Jolt errors, stale tweens, duplicate callbacks, or new warnings.
 - The main scene completes a smoke launch without current-run errors.
 
 ## Current Limitations
@@ -125,13 +133,15 @@ The locally installed command-line Godot executable reports version 4.4.1, while
 4. **Add Ian’s defeat and encounter-reset behavior — complete.**
 5. **Add a functional room-completion condition and exit — complete.**
 6. **Replace hard-coded input fallbacks with named Godot input actions — complete.**
-7. **Evaluate combat before expanding Veinmore or adding enemies — current next objective.**
+7. **Evaluate combat before expanding Veinmore or adding enemies — complete.**
 
-Only one objective should be implemented at a time, after explicit approval.
+All seven approved training-room objectives are complete.
 
 ## Current Next Action
 
-Begin Objective 7: evaluate the complete training-room combat loop before expanding Veinmore or adding enemies.
+No new gameplay objective is active.
+
+The next milestone must begin with an explicit review and approval. Do not automatically extend the completed seven-objective sequence.
 
 ## Explicitly Out of Scope
 
@@ -160,6 +170,28 @@ Also avoid:
 Placeholder assets and temporary prototype values are acceptable.
 
 ## Changelog
+
+### 2026-10-21 — Objective 7 combat evaluation and exit-readability correction
+
+Affected file:
+
+- `scripts/rooms/first_room_bounds.gd`
+
+Changes:
+
+- Completed the full training-room combat evaluation with no blocking combat or stability defects.
+- Added one room-bound looping exit pulse with a `0.5s` half-cycle and `1.0s` full cycle.
+- Pulsed only the threshold's ivory/gold emission color and `2.4–3.4` emission intensity, plus `ExitGuideLight` energy from `2.34–3.42`.
+- Preserved exit scaling, scene structure, camera behavior, and completion logic.
+
+Validation:
+
+- The exit remained inactive before blood-mage defeat, and skeleton defeats did not activate it.
+- Blood-mage defeat activated the exit; its first bright peak appeared within `0.5s` and remained readable after the mage was removed.
+- Ian reached the active exit from within the room boundary.
+- Two victory-and-reset loops and one Ian defeat-and-reset loop passed with exactly one reset per completion or defeat.
+- Reload restored the exact inactive threshold material and guide-light baseline.
+- No runtime errors, Jolt errors, stale tweens, duplicate callbacks, or new warnings occurred; the five existing player-controller warnings remain known technical debt.
 
 ### 2026-09-11 — Skeleton visual-transform ownership correction
 
